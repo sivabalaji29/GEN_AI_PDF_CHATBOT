@@ -10,13 +10,13 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 
 os.environ["AZURE_OPENAI_API_KEY"] = "OPEN_AI_API_KEY"
 os.environ["AZURE_OPENAI_ENDPOINT"] = "AZURE_ENDPOINT"
-os.environ["AZURE_OPENAI_API_VERSION"] = "2023-12-01-preview"
+os.environ["AZURE_OPENAI_API_VERSION"] = "API_VERSION"
 os.environ["AZURE_OPENAI_CHAT_DEPLOYMENT_NAME"] = "gstgpt35t"
 
 
 embeddings = AzureOpenAIEmbeddings(
     azure_deployment="gsttextemb002",
-    openai_api_version="2023-12-01-preview",
+    openai_api_version="API_VERSION",
     azure_endpoint="AZURE_ENDPOINT",
     api_key=os.environ["AZURE_OPENAI_API_KEY"]
 )
@@ -26,7 +26,7 @@ vectorstore = FAISS.load_local("./db", embeddings, allow_dangerous_deserializati
 # Initialize LLM for Chat
 llm = AzureChatOpenAI(
     azure_deployment="gstgpt35t",
-    openai_api_version="2023-12-01-preview",
+    openai_api_version="API_VERSION",
     azure_endpoint="AZURE_ENDPOINT",
     api_key=os.environ["AZURE_OPENAI_API_KEY"]
 )
